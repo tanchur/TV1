@@ -1,10 +1,7 @@
 stages:
   - test
   - lint
-  - build
 
-variables:
-  DOCKER_DRIVER: overlay2
 
 before_script:
   - python --version
@@ -24,13 +21,4 @@ lint:
   tags:
     - docker
 
-build_docker:
-  stage: build
-  script:
-    - docker build -t mortgage-calculator:latest .
-    - echo "Docker image built successfully"
-  only:
-    - main
-  tags:
-    - docker
 
