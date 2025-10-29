@@ -1,0 +1,49 @@
+stages:
+  - test
+  - lint
+  - build
+  - deploy
+
+variables:
+  DOCKER_DRIVER: overlay2
+
+before_script:
+  - python --version
+  - pip install -r requirements.txt
+
+unit_tests:
+  stage: test
+  script:
+    - python -m pytest tests/ -v
+  tags:
+    - docker
+
+lint:
+  stage: lint
+  script:
+    - flake8 app/ tests/ --max-line-length=100 --count --statistics
+  tags:
+    - docker
+
+build_docker:
+  stage: build
+  script:
+    - docker build -t mortgage-calculator:latest .
+    - echo "Docker image built successfully"
+  only:
+    - main
+  tags:
+    - docker
+
+deploy:
+  stage: deploy
+  script:
+    - echo "Deploying to production server..."
+    - docker stop mortgage-calculator || true
+    - docker rm mortgage-calculator || true
+    - docker run -d --name mortgage-calculator -p 8080:8080 mortgage-calculator:latest
+    - echo "Application deployed successfully"
+  only:
+    - main
+  tags:
+    - shell
