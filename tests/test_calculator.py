@@ -13,17 +13,20 @@ class TestMortgageCalculator(unittest.TestCase):
     def test_monthly_payment(self):
         calculator = MortgageCalculator(1000000, 7.5, 10)
         monthly_payment = calculator.calculate_monthly_payment()
-        self.assertAlmostEqual(monthly_payment, 11865.84, places=2)
+        # Исправлено ожидаемое значение на реальный результат расчета
+        self.assertAlmostEqual(monthly_payment, 11870.18, places=2)
 
     def test_total_payment(self):
         calculator = MortgageCalculator(1000000, 7.5, 10)
         total_payment = calculator.calculate_total_payment()
-        self.assertAlmostEqual(total_payment, 1423900.80, places=2)
+        # Исправлено: 11870.18 * 120 = 1424421.60
+        self.assertAlmostEqual(total_payment, 1424421.60, places=2)
 
     def test_overpayment(self):
         calculator = MortgageCalculator(1000000, 7.5, 10)
         overpayment = calculator.calculate_overpayment()
-        self.assertAlmostEqual(overpayment, 423900.80, places=2)
+        # Исправлено: 1424421.60 - 1000000 = 424421.60
+        self.assertAlmostEqual(overpayment, 424421.60, places=2)
 
     def test_zero_interest(self):
         calculator = MortgageCalculator(120000, 0, 1)
