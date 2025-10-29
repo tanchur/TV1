@@ -5,7 +5,7 @@ import os
 # Добавляем корневую директорию в путь Python
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from app.calculator import MortgageCalculator
+from app.calculator import MortgageCalculator  # noqa: E402
 
 
 class TestMortgageCalculator(unittest.TestCase):
