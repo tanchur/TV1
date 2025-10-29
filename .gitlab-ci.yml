@@ -2,7 +2,6 @@ stages:
   - test
   - lint
   - build
-  - deploy
 
 variables:
   DOCKER_DRIVER: overlay2
@@ -35,15 +34,3 @@ build_docker:
   tags:
     - docker
 
-deploy:
-  stage: deploy
-  script:
-    - echo "Deploying to production server..."
-    - docker stop mortgage-calculator || true
-    - docker rm mortgage-calculator || true
-    - docker run -d --name mortgage-calculator -p 8080:8080 mortgage-calculator:latest
-    - echo "Application deployed successfully"
-  only:
-    - main
-  tags:
-    - shell
