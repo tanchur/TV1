@@ -5,7 +5,7 @@ import os
 # Добавляем корневую директорию в путь Python
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from app.calculator import MortgageCalculator  # noqa: E402
+from app.calculator import MortgageCalculator
 
 
 class TestMortgageCalculator(unittest.TestCase):
@@ -39,3 +39,7 @@ class TestMortgageCalculator(unittest.TestCase):
         calculator = MortgageCalculator(100000, 5, 1)
         schedule = calculator.generate_payment_schedule()
         self.assertAlmostEqual(schedule[-1]['balance'], 0, places=2)
+
+
+if __name__ == '__main__':
+    unittest.main()
