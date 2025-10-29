@@ -8,7 +8,7 @@ class MortgageCalculator:
         self.annual_rate = annual_rate
         self.years = years
         self.months = years * 12
-        self.monthly_rate = annual_rate / 100 / 12
+        #self.monthly_rate = annual_rate / 100 / 12
 
     def calculate_monthly_payment(self) -> float:
         """Рассчитать ежемесячный платеж по аннуитетной схеме"""
