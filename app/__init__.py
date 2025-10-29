@@ -1,4 +1,1 @@
-from .calculator import MortgageCalculator
-from .main import MortgageApp
-
-__all__ = ['MortgageCalculator', 'MortgageApp']
+# Это файл инициализации пакета app

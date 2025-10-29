@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
-from calculator import MortgageCalculator
+from .calculator import MortgageCalculator
 
 
 class MortgageApp:
