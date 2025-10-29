@@ -1,7 +1,11 @@
 import tkinter as tk
-import tkinter as tk
 from tkinter import ttk, messagebox
-from .calculator import MortgageCalculator
+
+# Используем абсолютный импорт вместо относительного
+try:
+    from calculator import MortgageCalculator
+except ImportError:
+    from app.calculator import MortgageCalculator
 
 
 class MortgageApp:
@@ -93,5 +97,11 @@ class MortgageApp:
             messagebox.showerror(
                 "Ошибка", "Пожалуйста, введите корректные числовые значения"
             )
-        except Exception:
-            messagebox.showerror("Ошибка", "Произошла ошибка при расчете")
+        except Exception as error:
+            messagebox.showerror("Ошибка", f"Произошла ошибка: {error}")
+
+
+if __name__ == "__main__":
+    root = tk.Tk()
+    app = MortgageApp(root)
+    root.mainloop()
