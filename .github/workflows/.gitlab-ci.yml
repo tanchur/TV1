@@ -11,14 +11,12 @@ unit_tests:
   stage: test
   script:
     - python -m pytest tests/ -v
-  tags:
-    - docker
+
 
 lint:
   stage: lint
   script:
     - flake8 app/ tests/ --max-line-length=100 --count --statistics
-  tags:
-    - docker
+
 
 
